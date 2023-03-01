@@ -1,0 +1,16 @@
+body {
+	font-family: 'Tilt Neon', cursive;
+}
+
+.navbar-brand {
+	margin-left: 4rem;
+	font-size: 1.5rem;
+}
+
+.nav-item {
+	margin-top: 0.3rem;
+}
+
+.card-img-top {
+	height: 200px;
+}

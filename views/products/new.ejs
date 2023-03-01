@@ -1,0 +1,58 @@
+<% layout("layouts/boilerplate")%>
+<div class="container">
+	<h1 class="text-center my-4">Create A New Product</h1>
+	<form action="/products" method="post" class="needs-validation" enctype="multipart/form-data" novalidate>
+		<div class="mb-3 w-50 m-auto">
+			<label for="name" class="form-label">Name</label>
+			<input
+				type="text"
+				class="form-control"
+				id="name"
+				name="name"
+				placeholder="shirt, notebook, etc"
+				maxlength="30"
+				required
+			/>
+			<div class="invalid-feedback">Please choose a Name</div>
+		</div>
+		<div class="mb-3 w-50 m-auto">
+			<label for="price" class="form-label">Price</label>
+			<input type="number" step=".01" class="form-control" id="price" name="price" placeholder="0.00" required />
+			<div class="invalid-feedback">Please select a price</div>
+		</div>
+		<div class="mb-3 w-50 m-auto">
+			<label for="company" class="form-label">Company</label>
+			<input
+				type="text"
+				class="form-control"
+				id="company"
+				name="company"
+				placeholder="Apple, Supreme, etc"
+				required
+			/>
+			<div class="invalid-feedback">Please choose a company or brand</div>
+		</div>
+		<div class="mb-3 w-50 m-auto">
+			<label for="description" class="form-label">Description</label>
+			<textarea
+				type="text"
+				class="form-control"
+				id="description"
+				name="description"
+				rows="3"
+				placeholder="iPhone 13 Pro was made for low light. The Wide camera adds a wider aperture..."
+				maxlength="300"
+				required
+			></textarea>
+			<div class="invalid-feedback">Please choose a description</div>
+		</div>
+		<div class="mb-3 w-50 m-auto">
+			<label for="image" class="form-label">Image</label>
+			<input class="form-control" type="file" id="image" name="image" />
+		</div>
+		<div class="d-grid gap-2 w-50 m-auto">
+			<button class="btn btn-primary" type="submit">Add Product</button>
+		</div>
+	</form>
+</div>
+<script src="/javascripts/bootstrapValid.js"></script>

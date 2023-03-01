@@ -1,0 +1,51 @@
+<% layout("layouts/boilerplate") %>
+
+<div class="container mt-3">
+	<nav class="navbar bg-body-tertiary">
+		<div class="container-fluid">
+			<h2 class="ms-2">Products</h2>
+			<% if (success && success.length) { %>
+			<div class="alert alert-success py-2" role="alert">
+				<i class="fa-solid fa-check pe-2"></i>
+				<%= success %>
+			</div>
+			<% } else if(error && error.length){ %>
+			<div class="alert alert-danger py-2" role="alert">
+				<i class="fa-solid fa-circle-exclamation pe-2"></i>
+				<%= error %>
+			</div>
+			<% }%>
+			<form class="d-flex" method="get" role="search">
+				<input
+					class="form-control me-2"
+					type="search"
+					name="search"
+					placeholder="Search by name"
+					aria-label="Search"
+				/>
+				<button class="btn btn-outline-primary" type="submit">Search</button>
+			</form>
+		</div>
+	</nav>
+	<div class="container-fluid">
+		<% for(let i = 0; i < products.length; i += 3){ %>
+		<div class="row row-cols-3">
+			<% for(let j = i; j < i + 3 && j < products.length; j++){ %>
+			<div class="col my-2">
+				<div class="card">
+					<div class="card-body">
+						<h4 class="card-title"><%= products[j].name %></h4>
+						<h5 class="card-subtitle mb-3 text-muted">$<%= products[j].price %></h5>
+						<a href="/products/<%= products[j]._id %>" class="btn btn-primary">Details</a>
+					</div>
+					<div class="card-footer text-muted">By <%= products[j].company %></div>
+				</div>
+			</div>
+			<% } %>
+		</div>
+		<% } %>
+		<div class="my-5 me-5 position-fixed bottom-0 end-0">
+			<a href="/products/new" class="btn btn-outline-primary btn-lg">New Product</a>
+		</div>
+	</div>
+</div>

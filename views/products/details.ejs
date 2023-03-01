@@ -1,0 +1,40 @@
+<% layout("layouts/boilerplate")%>
+<div class="container">
+	<h1 class="text-center my-3">Details</h1>
+	<div class="card text-center w-50 m-auto">
+		<% if(product.image.url) {%>
+		<div class="row no-gutters">
+			<div class="col-md-6">
+				<div class="card-body">
+					<h5 class="card-title mb-3"><%= product.name %></h5>
+					<h6 class="card-subtitle mb-3">$<%= product.price %></h6>
+					<p class="card-text mb-3"><%= product.description %></p>
+					<a class="card-link btn btn-outline-primary" href="/products/<%=product._id%>/edit">Edit</a>
+					<form class="d-inline" action="/products/<%=product._id%>?_method=DELETE" method="POST">
+						<button class="btn btn-outline-danger">Delete</button>
+					</form>
+					<form action="/products/<%= product._id %>/image?_method=DELETE" method="POST">
+						<button type="submit" class="btn btn-outline-danger btn-sm mt-1">Delete Image</button>
+					</form>
+					<div class="card-footer text-muted mt-2">By <%= product.company %></div>
+				</div>
+			</div>
+
+			<div class="col-md-6 d-flex flex-column justify-content-center">
+				<img src="<%= product.image.url %>" class="card-img" alt="..." />
+			</div>
+		</div>
+		<% } else{%>
+		<div class="card-body">
+			<h5 class="card-title mb-3"><%= product.name %></h5>
+			<h6 class="card-subtitle mb-3">$<%= product.price %></h6>
+			<p class="card-text mb-3"><%= product.description %></p>
+			<a class="card-link btn btn-outline-primary" href="/products/<%=product._id%>/edit">Edit</a>
+			<form class="d-inline" action="/products/<%=product._id%>?_method=DELETE" method="POST">
+				<button class="btn btn-outline-danger">Delete</button>
+			</form>
+			<div class="card-footer text-muted mt-2">By <%= product.company %></div>
+		</div>
+		<% } %>
+	</div>
+</div>

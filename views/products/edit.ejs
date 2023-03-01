@@ -1,0 +1,58 @@
+<% layout("layouts/boilerplate")%>
+<div class="container">
+	<h1 class="text-center my-4">Edit Product</h1>
+	<form
+		action="/products/<%=product._id%>?_method=PUT"
+		method="POST"
+		class="needs-validation"
+		enctype="multipart/form-data"
+		novalidate
+	>
+		<div class="mb-2 w-50 m-auto">
+			<label for="name" class="form-label">Name</label>
+			<input type="text" id="name" class="form-control" name="name" value="<%= product.name %>" required />
+			<div class="invalid-feedback">Please choose a Name</div>
+		</div>
+		<div class="mb-2 w-50 m-auto">
+			<label for="price" class="form-label">Price</label>
+			<input
+				type="number"
+				step=".01"
+				id="price"
+				class="form-control"
+				name="price"
+				value="<%= product.price %>"
+				required
+			/>
+			<div class="invalid-feedback">Please select a price</div>
+		</div>
+		<div class="mb-2 w-50 m-auto">
+			<label for="company" class="form-label">Company</label>
+			<input
+				type="text"
+				id="company"
+				class="form-control"
+				name="company"
+				value="<%= product.company %>"
+				required
+			/>
+			<div class="invalid-feedback">Please choose a company or brand</div>
+		</div>
+		<div class="mb-2 w-50 m-auto">
+			<label for="description" class="form-label">Description</label>
+			<textarea type="text" id="description" class="form-control" name="description" rows="3" required>
+<%= product.description %></textarea
+			>
+			<div class="invalid-feedback">Please choose a description</div>
+		</div>
+		<div class="mb-2 w-50 m-auto">
+			<label for="image" class="form-label">Image</label>
+			<input id="image" name="image" class="form-control" type="file" />
+		</div>
+
+		<div class="d-grid gap-2 w-50 m-auto">
+			<button class="btn btn-primary">Update Product</button>
+		</div>
+	</form>
+</div>
+<script src="/javascripts/bootstrapValid.js"></script>

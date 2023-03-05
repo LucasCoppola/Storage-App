@@ -17,6 +17,7 @@ Also, if you add an image and regret it, you can delete it.
 -   Express
 -   Mongoose
 -   MongoDB
+-   Bootstrap
 
 ### Extras
 

@@ -6,8 +6,9 @@ body {
 	background-position: center;
 }
 
-h1 {
-	font-size: 5rem;
+.home-btn {
+	width: 200px;
+	margin-top: 20%;
 }
 
 .bounce-top {

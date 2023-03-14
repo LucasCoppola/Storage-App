@@ -1,10 +1,10 @@
 <% layout("layouts/boilerplate")%>
 <div class="container">
-	<h1 class="text-center my-4">Edit Product</h1>
+	<h1 class="text-center my-3">Edit Product</h1>
 	<form
 		action="/products/<%=product._id%>?_method=PUT"
 		method="POST"
-		class="needs-validation"
+		class="needs-validation mb-3"
 		enctype="multipart/form-data"
 		novalidate
 	>
@@ -51,7 +51,7 @@
 		</div>
 
 		<div class="d-grid gap-2 w-50 m-auto">
-			<button class="btn btn-primary">Update Product</button>
+			<button class="btn btn-primary mt-2">Update Product</button>
 		</div>
 	</form>
 </div>

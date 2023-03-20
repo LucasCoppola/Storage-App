@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
 		products = await Product.find({ name: { $regex: search, $options: 'i' } })
 	} else {
 		// If no search query is present, show all products
-		products = await Product.find({})
+		products = await Product.find({}).sort({ name: 'ascending' })
 	}
 	res.render('products/index', { products, error: req.flash('error'), success: req.flash('success') })
 })

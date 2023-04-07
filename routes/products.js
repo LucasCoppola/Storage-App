@@ -69,7 +69,8 @@ router.put('/:id', upload.single('image'), async (req, res) => {
 	product.company = req.body.company
 	product.description = req.body.description
 	product.image = req.file
-	if (JSON.stringify(product.image) !== '{}') {
+	if (req.file) {
+		// Access properties of req.file
 		product.image = { url: req.file.path, filename: req.file.filename }
 	}
 

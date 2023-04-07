@@ -34,6 +34,16 @@ app.get('/', (req, res) => {
 	res.render('home', { error: req.flash('error') })
 })
 
+app.use((req, res, next) => {
+	if (req.url.includes('favicon.ico')) {
+		// Serve the favicon.ico file from the public directory
+		res.sendFile(path.join(__dirname, 'public', 'favicon.ico'))
+	} else {
+		// Call the next middleware function for all other requests
+		next()
+	}
+})
+
 app.use('/products', productsRouter)
 
 const notFoundMiddleware = require('./middleware/not-found')

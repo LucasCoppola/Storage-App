@@ -1,0 +1,34 @@
+<% layout("layouts/boilerplate")%>
+
+<div class="container">
+	<div class="row justify-content-center align-items-center">
+		<div class="col-12 col-md-9 col-lg-7 col-xl-6">
+			<h1 class="text-center my-4">Register</h1>
+			<form action="/register" method="POST" class="needs-validation" novalidate>
+				<div class="mb-3">
+					<label class="form-label" for="username">Username</label>
+					<input class="form-control" type="text" id="username" name="username" required />
+					<div class="valid-feedback">Looks good!</div>
+				</div>
+				<div class="mb-3">
+					<label class="form-label" for="email">Email</label>
+					<input class="form-control" type="email" id="email" name="email" required />
+					<div class="valid-feedback">Looks good!</div>
+				</div>
+				<div class="mb-4">
+					<label class="form-label" for="password">Password</label>
+					<input class="form-control" type="password" id="password" name="password" required />
+					<div class="valid-feedback">Looks good!</div>
+				</div>
+				<div class="d-grid gap-2">
+					<button class="btn btn-primary text-white">Register</button>
+				</div>
+				<p class="text-center text-muted mt-5 mb-0">
+					Have already an account?
+					<a href="/login" class="fw-bold text-body"><u>Login here</u></a>
+				</p>
+			</form>
+		</div>
+	</div>
+</div>
+<script src="/javascripts/bootstrapValid.js"></script>

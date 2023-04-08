@@ -24,7 +24,7 @@ router.get('/new', (req, res) => {
 
 router.post('/', upload.single('image'), async (req, res) => {
 	const { name, price, company, description } = req.body
-	const product = await new Product({ name, price, company, description })
+	const product = new Product({ name, price, company, description })
 
 	if (JSON.stringify(product.image) !== '{}') {
 		product.image = { url: req.file.path, filename: req.file.filename }

@@ -1,0 +1,42 @@
+<% layout("layouts/boilerplate")%>
+
+<div class="container">
+	<div class="row justify-content-center align-items-center">
+		<div class="col-12 col-md-9 col-lg-7 col-xl-6">
+			<% if (error && error.length) { %>
+			<div class="alert alert-danger mt-3 py-2"><%= error %></div>
+			<% } %>
+
+			<h1 class="text-center my-4">Log in</h1>
+			<form action="/login" method="POST" class="needs-validation" novalidate>
+				<!-- Email input -->
+				<div class="mb-4">
+					<label class="form-label" for="username">Username</label>
+					<input type="text" id="username" name="username" class="form-control" required />
+					<div class="valid-feedback">Looks good!</div>
+				</div>
+
+				<!-- Password input -->
+				<div class="mb-4">
+					<label class="form-label" for="password">Password</label>
+					<input type="password" id="password" name="password" class="form-control" required />
+					<div class="valid-feedback">Looks good!</div>
+				</div>
+
+				<!-- Submit button -->
+				<div class="d-grid gap-2">
+					<button class="btn btn-primary btn-block mb-4">Sign in</button>
+				</div>
+
+				<!-- Register buttons -->
+				<div class="text-center">
+					<p>
+						Not a member?
+						<a href="/register">Register</a>
+					</p>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<script src="/javascripts/bootstrapValid.js"></script>

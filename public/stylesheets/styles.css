@@ -14,3 +14,8 @@ body {
 .card-img-top {
 	height: 200px;
 }
+
+.empty-list {
+	margin-top: 8rem;
+	opacity: 0.8;
+}

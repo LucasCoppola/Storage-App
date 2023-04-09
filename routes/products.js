@@ -11,11 +11,12 @@ router.get('/', isLoggedIn, async (req, res) => {
 	let products = []
 	if (search) {
 		// If a search query is present, search for products that match the query
-		products = await Product.find({ name: { $regex: search, $options: 'i' } })
+		products = await Product.find({ user: req.user._id, name: { $regex: search, $options: 'i' } })
 	} else {
 		// If no search query is present, show all products
-		products = await Product.find({}).sort({ name: 'ascending' })
+		products = await Product.find({ user: req.user._id }).sort({ name: 'ascending' })
 	}
+
 	res.render('products/index', { products })
 })
 
@@ -26,8 +27,9 @@ router.get('/new', isLoggedIn, (req, res) => {
 router.post('/', isLoggedIn, upload.single('image'), async (req, res) => {
 	const { name, price, company, description } = req.body
 	const product = new Product({ name, price, company, description })
+	product.user = req.user._id
 
-	if (JSON.stringify(product.image) !== '{}') {
+	if (req.file) {
 		product.image = { url: req.file.path, filename: req.file.filename }
 	}
 
@@ -38,7 +40,8 @@ router.post('/', isLoggedIn, upload.single('image'), async (req, res) => {
 
 router.get('/:id', isLoggedIn, async (req, res) => {
 	const { id } = req.params
-	const product = await Product.findById(id)
+	const product = await Product.findById(id).populate('user')
+
 	if (!product) {
 		req.flash('error', 'Product Not Found')
 		res.redirect('/products')

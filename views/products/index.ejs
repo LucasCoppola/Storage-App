@@ -27,6 +27,9 @@
 			</form>
 		</div>
 	</nav>
+	<% if (products.length <= 0) { %>
+	<h3 class="text-center empty-list">Your product list is empty</h3>
+	<%} else { %>
 	<div class="container-fluid">
 		<% for(let i = 0; i < products.length; i += 3){ %>
 		<div class="row row-cols-3">
@@ -43,7 +46,8 @@
 			</div>
 			<% } %>
 		</div>
-		<% } %>
+		<% } %> <% } %>
+
 		<div class="my-5 me-5 position-fixed bottom-0 end-0">
 			<a href="/products/new" class="btn btn-outline-primary btn-lg">New Product</a>
 		</div>

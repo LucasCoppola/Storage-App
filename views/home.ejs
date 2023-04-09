@@ -38,19 +38,32 @@
 		<nav class="navbar navbar-expand-lg navbar-dark">
 			<div class="container-fluid">
 				<a class="navbar-brand text-dark" href="/">Home</a>
+
 				<div class="navbar-nav me-auto">
 					<div class="nav-item">
 						<a class="nav-link text-dark" href="/products">Products</a>
 					</div>
 				</div>
-				<span class="navbar-text">
-					<a href="https://github.com/LucasCoppola" target="_blank">
-						<i class="fa-brands fa-github fa-xl me-3 text-dark"></i>
-					</a>
-					<a href="https://www.linkedin.com/in/lucas-coppola-1805ab226/" target="_blank">
-						<i class="fa-brands fa-linkedin fa-xl me-5 text-dark"></i>
-					</a>
-				</span>
+
+				<div class="navabar-nav ml-auto d-flex">
+					<% if(!currentUser) {%>
+					<a class="nav-link text-dark" href="/login">Log In</a>
+					<a class="nav-link text-dark" href="/register">Register</a>
+					<% }else{ %>
+					<a class="nav-link text-dark" href="/logout">Log Out</a>
+					<% } %>
+				</div>
+
+				<div class="fixed-bottom d-flex justify-content-end">
+					<span class="mb-3">
+						<a href="https://github.com/LucasCoppola" target="_blank">
+							<i class="fa-brands fa-github fa-xl me-3 text-dark"></i>
+						</a>
+						<a href="https://www.linkedin.com/in/lucas-coppola-1805ab226/" target="_blank">
+							<i class="fa-brands fa-linkedin fa-xl me-4 text-dark"></i>
+						</a>
+					</span>
+				</div>
 			</div>
 		</nav>
 		<% if(error && error.length){ %>

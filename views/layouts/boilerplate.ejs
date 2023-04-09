@@ -32,7 +32,7 @@
 		<title>Storage App</title>
 	</head>
 	<body>
-		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark py-1">
 			<div class="container-fluid">
 				<a class="navbar-brand" href="/">Home</a>
 				<div class="navbar-nav me-auto">
@@ -40,14 +40,15 @@
 						<a class="nav-link" href="/products">Products</a>
 					</div>
 				</div>
-				<span class="navbar-text">
-					<a href="https://github.com/LucasCoppola" target="_blank">
-						<i class="fa-brands fa-github fa-xl me-3"></i>
-					</a>
-					<a href="https://www.linkedin.com/in/lucas-coppola-1805ab226/" target="_blank">
-						<i class="fa-brands fa-linkedin fa-xl me-5"></i>
-					</a>
-				</span>
+
+				<div class="navabar-nav ml-auto d-flex">
+					<% if(!currentUser) {%>
+					<a class="nav-link text-white" href="/login">Log In</a>
+					<a class="nav-link text-white" href="/register">Register</a>
+					<% }else{ %>
+					<a class="nav-link text-white" href="/logout">Log Out</a>
+					<% } %>
+				</div>
 			</div>
 		</nav>
 		<%- body %>

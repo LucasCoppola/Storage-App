@@ -48,8 +48,11 @@ passport.use(new LocalStrategy(User.authenticate()))
 passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
 
-app.get('/', (req, res) => {
-	res.render('home', { error: req.flash('error') })
+app.use((req, res, next) => {
+	res.locals.currentUser = req.user
+	res.locals.success = req.flash('success')
+	res.locals.error = req.flash('error')
+	next()
 })
 
 app.use((req, res, next) => {
@@ -64,6 +67,10 @@ app.use((req, res, next) => {
 
 app.use('/', authRouter)
 app.use('/products', productRouter)
+
+app.get('/', (req, res) => {
+	res.render('home')
+})
 
 const notFoundMiddleware = require('./middleware/not-found')
 const errorMiddleware = require('./middleware/error-handler')

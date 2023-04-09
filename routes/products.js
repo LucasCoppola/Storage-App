@@ -4,8 +4,9 @@ const Product = require('../models/product')
 const multer = require('multer')
 const { storage, cloudinary } = require('../cloudinary')
 const upload = multer({ storage })
+const isLoggedIn = require('../middleware/isLoggedIn')
 
-router.get('/', async (req, res) => {
+router.get('/', isLoggedIn, async (req, res) => {
 	const { search } = req.query
 	let products = []
 	if (search) {
@@ -15,14 +16,14 @@ router.get('/', async (req, res) => {
 		// If no search query is present, show all products
 		products = await Product.find({}).sort({ name: 'ascending' })
 	}
-	res.render('products/index', { products, error: req.flash('error'), success: req.flash('success') })
+	res.render('products/index', { products })
 })
 
-router.get('/new', (req, res) => {
+router.get('/new', isLoggedIn, (req, res) => {
 	res.render('products/new')
 })
 
-router.post('/', upload.single('image'), async (req, res) => {
+router.post('/', isLoggedIn, upload.single('image'), async (req, res) => {
 	const { name, price, company, description } = req.body
 	const product = new Product({ name, price, company, description })
 
@@ -35,7 +36,7 @@ router.post('/', upload.single('image'), async (req, res) => {
 	res.redirect('/products')
 })
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', isLoggedIn, async (req, res) => {
 	const { id } = req.params
 	const product = await Product.findById(id)
 	if (!product) {
@@ -45,7 +46,7 @@ router.get('/:id', async (req, res) => {
 	res.render('products/details', { product })
 })
 
-router.get('/:id/edit', async (req, res) => {
+router.get('/:id/edit', isLoggedIn, async (req, res) => {
 	const { id } = req.params
 	const product = await Product.findById(id)
 	if (!product) {
@@ -55,7 +56,7 @@ router.get('/:id/edit', async (req, res) => {
 	res.render('products/edit', { product })
 })
 
-router.put('/:id', upload.single('image'), async (req, res) => {
+router.put('/:id', isLoggedIn, upload.single('image'), async (req, res) => {
 	const { id } = req.params
 	const product = await Product.findById(id)
 
@@ -80,14 +81,14 @@ router.put('/:id', upload.single('image'), async (req, res) => {
 	res.redirect(`/products/${id}`)
 })
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', isLoggedIn, async (req, res) => {
 	const { id } = req.params
 	await Product.findByIdAndDelete(id, { ...req.body })
 	req.flash('success', 'Product Deleted')
 	res.redirect('/products')
 })
 
-router.delete('/:id/image', async (req, res) => {
+router.delete('/:id/image', isLoggedIn, async (req, res) => {
 	const { id } = req.params
 
 	// retrieve product from the database

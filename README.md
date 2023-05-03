@@ -1,6 +1,6 @@
 # Storage App
 
-This Project is for small companies that are looking for a way to store their products in a simple and nice-looking way
+Designed and developed a CRUD web application for companies to store and manage their products. The application provides user registration and login, allowing users to create, edit, and delete products and associated images. The application provides a clean and intuitive user interface, making it easy for users to manage their product inventory. The application is scalable and maintainable, with room for future feature enhancements based on user feedback
 
 ## Demo
 
